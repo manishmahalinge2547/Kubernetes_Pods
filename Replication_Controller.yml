@@ -1,0 +1,24 @@
+kind: ReplicationController          # Object type (What we are creating)
+apiVersion: v1                       # API version for this object
+
+metadata:
+  name: myreplicationcontroller      # Name of the replication controller
+
+spec:
+  replicas: 2                        # Always keep 2 pods running (Desired number)
+
+  selector:                          # Which pods this controller will manage
+    myname: sai                      # It will watch pods having label myname=sai
+
+  template:                          # Blueprint to create new pods
+    metadata:
+      labels:
+        myname: sai                  # Label given to new pods (must match selector)
+
+    spec:
+      containers:
+        - name: c00                  # Container name (any name you give)
+          image: ubuntu              # Which image to run
+          command: ["/bin/bash", "-c", "while true; do echo hello-sai; sleep 200; done"]
+                                      # Run infinite loop printing hello-sai
+

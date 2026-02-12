@@ -1,0 +1,37 @@
+1  cd
+    2  ls
+    3  vi pod6_label2.yml
+    4  kubectl apply -f pod6_label2.yml
+    5  vi pod6_label2.yml
+    6  kubectl apply -f pod6_label2.yml
+    7  kubectl get pods
+    8  kubectl get pods --show-labels
+    9  ls
+   10  kubectl apply -f pod5_Labels.yml
+   11  kubectl get pods --show-labels
+   12  kubectl get pods -l day=fri
+   13  kubectl get pods -l day!=fri
+   14  kubectl get pods -l 'day in(fri,sun)'
+   15  kubectl get pods -l 'day notin(fri,sun)'
+   16  kubectl delete pods -l 'day in(fri,sun)'
+   17  kubectl delete pods -l 'class in(kubernetes)'
+   18  ls
+   19  vi Node_label.yml
+   20  kubelctl apply -f Node_label.yml
+   21  kubectl apply -f Node_label.yml
+   22  cat Node_label.yml
+   23  kubectl get nodes
+   24  kubectl apply -f Node_label.yml
+   25  kubectl get pods
+   26  kubectl label nodes
+   27  kubectl label nodes ip-192-168-37-0.ap-southeast-1.compute.internal mynode=saidemy
+   28  kubectl get pods
+   29  kubectl describe node ip-192-168-37-0.ap-southeast-1.compute.internal
+   30  kubectl get nodes
+   31  kubectl get pods
+   32  kubectl delete pod nodelabelpod
+   33  ls
+   34  mv Node_label.yml pod5_Labels.yml pod6_label2.yml Kubernetes_Pods/
+   35  ls
+   36  history
+
