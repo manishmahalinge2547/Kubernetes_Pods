@@ -34,4 +34,90 @@
    34  mv Node_label.yml pod5_Labels.yml pod6_label2.yml Kubernetes_Pods/
    35  ls
    36  history
+  59  kubectl apply -f Kubernetes_Pods/
+   60  ls
+   61  kubectl get all
+   62  ls
+   63  kubectl delete -f Kubernetes_Pods
+   64  kubectl get all
+   65  ls
+   66  kubectl apply -f Deployment.yml
+   67  kubectl get all
+   68  kubectl delete pods mydeployments-549dc8899b-k227v
+   69  kubectl get all
+   70  kubectl get all
+   71  kubectl scal --replicas=4 deployment.apps/mydeployments
+   72  kubectl get all
+   73  kubectl scale --replicas=4 deployment.apps/mydeployments
+   74  kubectl get all
+   75  kubectl scale --replicas=2 deployment.apps/mydeployments
+   76  ls
+   77  kubectl get all
+   78  vi Deployment.yml
+   79  ls
+   80  kubectl apply -f Deployment.yml
+   81  kubectl get all
+   82  kubectl logs -f pod/mydeployments-549dc8899b-4wtp8   1/1     Terminating   0          8m58s
+   83  kubectl get pods
+   84  kubectl logs -f mydeployments-549dc8899b-4wtp8
+   85  kubectl get all
+   86  kubectl logs -f pod/mydeployments-6f77486449-4rxqv
+   87  kubectl scale --replicas=6 deployment.apps/mydeployments
+   88  kubectl get all
+   89  kubectl get logs -f mydeployments-6f77486449-htg86
+   90  kubectl get pods
+   91  kubectl get all
+   92  kubectl logs -f pod/mydeployments-6f77486449-htg86
+   93  kubectl rollback undo deployment.apps/mydeployments
+   94  kubectl rollout undo deployment.apps/mydeployments
+   95  kubectl get all
+   96  kubectl rollout undo deployment.apps/mydeployments
+   97  kubectl get all
+   98  kubectl scale --replicas=2 deployment.apps/mydeployments
+   99  kubectl get all
+  100  kubectl get all
+  101  kubectl get all
+  102  kubectl get all
+  103  kubectl get all
+  104  kubectl rollout undo deployment.apps/mydeployments
+  105  kubectl get all
+  106  kubectl rollout history deploy deployment.apps/mydeployments
+  107  ls
+  108  kubectl get all
+  109  kubectl delete -f Deployment.yml
+  110  ls
+  111  cd
+  112  ls
+  113  mv Deployment.yml Kubernetes_Pods/
+  114  ls
+  115  kubectl get nodes
+  116  eksctl get all
+  117  eksctl get all
+  118  cd
+  119  ls
+  120  kubectl get all
+  121  kubectl get nodes
+  122  l
+  123  ls
+  124  vi deploy_httpd.yml
+  125  kubectl apply -f deploy_httpd.yml
+  126  kubectl get all
+  127  kubectl get all -o wide
+  128  kubectl get all -o wide
+  129  vi service.yml
+  130  cat deploy_httpd.yml
+  131  cat service.yml
+  132  kubectl apply -f service.yml
+  133  kubectl get all
+  134  kubectl exec -it mydeployments-978ffb679-bv6bd -- /bin/bash
+  135  cd
+  136  kubectl get all
+  137  kubectl delete -f service.yml
+  138  ls
+  139  kubectl delete -f deploy_httpd.yml
+  140  ls
+  141  mv deploy_httpd.yml service.yml Kubernetes_Pods/
+  142  ls
+  143  cd Kubernetes_Pods/
+
 
