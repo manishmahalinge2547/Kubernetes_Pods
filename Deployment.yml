@@ -18,4 +18,4 @@ spec:
       containers:
         - name: c00
           image: ubuntu
-          command: ["bin/bash", "-c", "while true; do echo hello-manish; sleep 200 ; done"]
+          command: ["bin/bash", "-c", "while true; do echo hello-devops; sleep 200 ; done"]

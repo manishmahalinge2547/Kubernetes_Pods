@@ -1,0 +1,15 @@
+kind: Service                  # Hum Service bana rahe hain
+apiVersion: v1                 # Service ka API version
+metadata:                      # Service ki basic info
+  name: demoservice            # Service ka naam
+
+spec:                          # Service ka configuration
+  ports:                       # Port settings
+    - port: 80                 # Service ka port (bahar se access hoga)
+      targetPort: 80           # Pod ke container ka port (andar wala)
+
+  selector:                    # Kaunse pods ko traffic bhejna hai
+    app: deployment            # Jinke paas label app=deployment hoga
+
+  type: LoadBalancer           # Service ko internet se expose karega
+

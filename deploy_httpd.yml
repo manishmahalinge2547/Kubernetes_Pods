@@ -1,0 +1,24 @@
+kind: Deployment                # Type of Kubernetes object
+apiVersion: apps/v1             # API version used for Deployment
+metadata:                       # Information about the object
+  name: mydeployments           # Name of the Deployment
+
+spec:                           # Desired state of the Deployment
+  replicas: 4                   # Keep 4 pods running
+
+  selector:                     # Selects which pods this Deployment manages
+    matchLabels:                # Exact label matching
+      app: deployment           # Pods with label app=deployment will be managed
+
+  template:                     # Blueprint for creating new pods
+    metadata:                   # Information about the pod
+      labels:                   # Labels assigned to the pod
+        app: deployment         # Pod label (must match selector)
+
+    spec:                       # Pod specification
+      containers:               # List of containers inside the pod
+        - name: c00             # Name of the container
+          image: httpd          # Docker image to run (Apache server)
+          ports:                # Ports exposed by the container
+            - containerPort: 80 # Container listens on port 80
+
