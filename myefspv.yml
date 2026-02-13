@@ -1,0 +1,20 @@
+apiVersion: v1   # Kubernetes API ka version (normally v1 hota hai)
+
+kind: PersistentVolume   # Yeh batata hai ki hum Persistent Volume bana rahe hain
+
+metadata:
+  name: myefspv   # PV ka naam (aap kuch bhi rakh sakte ho)
+
+spec:
+  capacity:
+    storage: 1Gi   # Storage size 1 Gigabyte
+
+  accessModes:
+    - ReadWriteMany   # Multiple pods ek sath read aur write kar sakte hain
+
+  persistentVolumeReclaimPolicy: Retain   # Data delete nahi hoga jab PV release hoga
+
+  nfs:
+    server: fs-080dda770d088393b.efs.ap-southeast-1.amazonaws.com   # Yaha apna AWS EFS ka DNS name dalna hai
+    path: "/"   # Root folder use kar rahe hain
+

@@ -1,0 +1,17 @@
+apiVersion: v1   # Kubernetes ka API version (usually v1)
+
+kind: PersistentVolumeClaim   # Yeh PVC hai (storage maangne ke liye use hota hai)
+
+metadata:
+  name: myfesvolcalaim   # PVC ka naam (aap apni marzi se rakh sakte ho)
+
+spec:
+  volumeName: myefspv   # Yeh batata hai kaunsa PV use karna hai (myefspv)
+
+  accessModes:
+    - ReadWriteMany   # Multiple pods ek sath read aur write kar sakte hain
+
+  resources:
+    requests:
+      storage: 1Gi   # Kitni storage chahiye (1 Gigabyte)
+
