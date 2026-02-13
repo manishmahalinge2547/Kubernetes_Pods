@@ -1,0 +1,20 @@
+kind: ReplicaSet
+apiVersion: apps/v1
+metadata:
+  name: myreplicaset
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      myname: sai
+
+  template:
+    metadata:  #info about the object
+      labels:
+        myname: sai
+    spec:
+      containers:
+        - name: c00
+          image: ubuntu
+          command: ["/bin/bash", "-c", "while true; do echo hello-sai; sleep 200 ; done"]
