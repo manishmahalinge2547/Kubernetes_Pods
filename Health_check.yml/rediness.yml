@@ -1,0 +1,29 @@
+apiVersion: v1                 # Using Kubernetes basic API version
+
+kind: Pod                      # We are creating a Pod
+                               # Pod = a small box that runs your application
+
+metadata:
+  name: mypod                  # Name of the Pod
+
+spec:                          # Specification = what should run inside the Pod
+
+  containers:                  # List of containers inside the Pod
+  - name: c00                  # Name of the container
+    image: httpd               # Apache web server image (runs a website)
+
+    ports:
+    - containerPort: 80        # Port 80 = normal website port (browser uses this)
+
+    readinessProbe:            # Kubernetes checks: "Is the app ready?"
+                               # If not ready → traffic will NOT be sent
+
+      initialDelaySeconds: 10  # Wait 10 seconds after container starts
+                               # Give time for Apache to fully start
+
+      httpGet:                 # Kubernetes checks like a browser
+        path: /                # It opens homepage "/"
+        port: 80               # It checks on port 80
+                               # If response is OK → Pod is READY
+                               # If not → No traffic sent
+

@@ -7,7 +7,7 @@ metadata:
 
 spec:
   capacity:
-    storage: 1Gi   # Storage size 1 Gigabyte
+    storage: 3Gi   # Storage size 1 Gigabyte
 
   accessModes:
     - ReadWriteMany   # Multiple pods ek sath read aur write kar sakte hain
@@ -15,6 +15,6 @@ spec:
   persistentVolumeReclaimPolicy: Retain   # Data delete nahi hoga jab PV release hoga
 
   nfs:
-    server: fs-080dda770d088393b.efs.ap-southeast-1.amazonaws.com   # Yaha apna AWS EFS ka DNS name dalna hai
+    server: fs-0dd40940c31d4d1ab.efs.ap-southeast-1.amazonaws.com   # Yaha apna AWS EFS ka DNS name dalna hai
     path: "/"   # Root folder use kar rahe hain
 

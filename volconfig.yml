@@ -1,0 +1,32 @@
+apiVersion: v1                   # MUST have this: tells Kubernetes which API version to use
+kind: Pod                         # We are creating a Pod
+                                   # Pod = a small box 📦 that holds one or more containers
+
+metadata:
+  name: myvolconfig               # Pod's name = myvolconfig
+                                   # Like giving an address to your box
+
+spec:                              # Now we define what goes inside the Pod
+
+  containers:                      # Pod can have one or more containers
+    - name: c1                     # Container name = c1 (just for identification)
+      image: ubuntu                # Container will use Ubuntu image
+                                   # Image = pre-made OS/software for container
+      command: ["/bin/bash", "-c", "while true; do echo hello-sai; sleep 800; done"]
+                                   # Command container runs on start:
+                                   # 1️⃣ while true → infinite loop, keeps container alive
+                                   # 2️⃣ echo hello-sai → prints message
+                                   # 3️⃣ sleep 800 → wait 800 seconds before repeating
+
+      volumeMounts:                # Attach storage inside the container
+        - name: testconfigmap      # Volume name to mount
+          mountPath: "/tmp/config" # Folder inside container where config file appears
+
+  volumes:                         # Volumes are defined at Pod level (not inside container)
+    - name: testconfigmap          # Volume name (must match the volumeMount name)
+      configMap:                   # This volume is linked to a ConfigMap
+        name: mymap                # ConfigMap name = mymap (created previously)
+        items:                     # Specify which key(s) from the ConfigMap to use
+          - key: samplefile        # Key in ConfigMap = samplefile
+            path: samplefile       # File will appear inside container at /tmp/config/samplefile
+
