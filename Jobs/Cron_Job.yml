@@ -1,0 +1,24 @@
+apiVersion: batch/v1              # Using batch API (for Job and CronJob)
+
+kind: CronJob                     # Create a CronJob (runs on schedule)
+
+metadata:
+  name: myjob                     # Name of this CronJob
+
+spec:
+  schedule: "* * * * *"           # Run every 1 minute
+                                  # (minute hour day month day-of-week)
+
+  jobTemplate:                    # This is the Job template
+    spec:
+      template:                   # This is the Pod template (Job creates a Pod)
+        spec:
+          containers:
+            - name: mycont        # Container name
+              image: ubuntu       # Use Ubuntu image
+              command: ["/bin/bash", "-c", "echo saidemy; sleep 10"]
+                                  # Print text and wait 20 seconds
+
+          restartPolicy: Never   # Restart only if it fails
+                                     # (Allowed values: Never or OnFailure)
+

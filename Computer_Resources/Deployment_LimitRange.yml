@@ -1,0 +1,34 @@
+apiVersion: apps/v1              # Using apps API for Deployment
+kind: Deployment                 # We are creating a Deployment
+
+metadata:
+  name: mydeployments            # Name of the Deployment
+
+spec:
+  replicas: 3                    # Create 3 pods
+
+  selector:                      # Deployment must have a selector
+    matchLabels:
+      objtype: deployment        # It will manage pods with this label
+
+  template:                      # Blueprint for pods
+    metadata:
+      labels:
+        objtype: deployment      # Label added to each pod
+
+    spec:
+      containers:
+        - name: c00              # Container name
+          image: ubuntu          # Use Ubuntu image
+          command: ["/bin/bash", "-c", "while true; do echo hello sai; sleep 500; done"]
+                                  # Infinite loop printing text
+
+          resources:
+            requests:             # Minimum resources guaranteed
+              cpu: "100m"         # 0.1 CPU minimum
+              memory: "100Mi"     # 100Mi memory minimum
+
+            limits:               # Maximum allowed usage
+              cpu: "300m"         # Max 0.3 CPU
+              memory: "300Mi"     # Max 300Mi memory
+

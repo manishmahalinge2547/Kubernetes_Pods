@@ -1,0 +1,20 @@
+apiVersion: batch/v1          # Job API
+kind: Job                     # We are creating a Job
+
+metadata:
+  name: myjob                 # Job name
+
+spec:
+  parallelism: 5              #Run 5 Pods in parallel
+  template:                   # Pod template (Job creates a Pod)
+    metadata:
+      name: testjob           # Pod name
+
+    spec:
+      containers:
+        - name: mycont        # Container name
+          image: ubuntu       # Use Ubuntu image
+          command: ["/bin/bash", "-c", "echo saidemy; sleep 15"]
+                                # Print text and wait 15 seconds
+
+      restartPolicy: Never    # Do not restart after completion

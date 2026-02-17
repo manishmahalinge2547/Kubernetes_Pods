@@ -1,0 +1,19 @@
+apiVersion: v1                 # Basic Kubernetes API
+
+kind: LimitRange               # This creates a LimitRange rule
+
+metadata:
+  name: mylimitrange           # Name of this rule
+
+spec:
+  limits:
+  - default:                   # Default MAX limit if user does not set one
+      cpu: "300m"              # Max CPU = 0.3 CPU
+      memory: "300Mi"          # Max Memory = 300Mi
+
+    defaultRequest:            # Default MIN request if user does not set one
+      cpu: "100m"              # Default requested CPU = 0.1 CPU
+      memory: "100Mi"          # Default requested Memory = 100Mi
+
+    type: Container            # Rule applies to each container
+

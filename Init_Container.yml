@@ -1,0 +1,30 @@
+apiVersion: v1                 # Basic Kubernetes API
+kind: Pod                      # Creating a Pod
+
+metadata:
+  name: mypod                  # Pod name
+
+spec:
+  initContainers:              # This runs FIRST before main container
+  - name: c1                   # Init container name
+    image: ubuntu              # Using ubuntu image
+    command: ["/bin/sh", "-c", "echo 'Hello_Sai' > /tmp/c1dir/saifile; sleep 20"]
+                                # Create file in shared volume
+                                # Then wait 20 seconds
+    volumeMounts:
+    - name: myvol              # Mount shared volume
+      mountPath: "/tmp/c1dir"  # Path inside init container
+
+  containers:                  # Main container (runs AFTER init finishes)
+  - name: c2                   # Main container name
+    image: ubuntu              # Using ubuntu image
+    command: ["/bin/bash", "-c", "sleep infinity"]
+                                # Keep container running
+    volumeMounts:
+    - name: myvol              # Mount same shared volume
+      mountPath: "/tmp/c2dir"  # Path inside main container
+
+  volumes:
+  - name: myvol                # Volume name (must match above)
+    emptyDir: {}               # Temporary shared storage inside Pod
+
